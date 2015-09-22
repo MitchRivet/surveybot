@@ -11,7 +11,9 @@
   </head>
   <body>
     <div class="container">
+
       <div ng-controller="WineCtrl">
+        <p>Survey Number: {{ answer1.length }}</p> 
         <h1>Hey brother, what kind of wine do you prefer?</h1>
 
         <form class="form-inline" role="form" ng-submit="SurveyFactory.addAnswerTwo(); SurveyFactory.addAnswerOne()">
