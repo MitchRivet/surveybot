@@ -8,24 +8,49 @@
     <script src="controllers/WineController.js"></script>
     <script src="services/SurveyFactory.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
- <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
   </head>
   <body>
-    <div class="container">
+    <div class="container" ng-controller="WineCtrl">
       <h1>Hey brother, what kind of wine do you prefer?</h1>
 
-      <div class="dropdown">
-        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Choose your wine
-          <span class="caret"></span></button>
-          <ul class="dropdown-menu">
-            <li>White</a></li>
-            <li>Red</a></li>
-            <li>Wine Makes Me Cry</a></li>
-          </ul>
+      <form class="form-inline" role="form" ng-submit="SurveyFactory.addAnswerTwo(); SurveyFactory.addAnswerOne()">
+        <select ng-model="SurveyFactory.wineAnswer">
+          <option value="white">White</option>
+          <option value="red">Red</option>
+          <option value="cry">Wine Makes Me Cry</option>
+        </select>
       </div>
 
+
+      <div ng-controller="ClooneyCtrl">
+        <h1>What ya think of Clooney?</h1>
+        <select ng-model="SurveyFactory.clooneyAnswer">
+          <option value="yay">Yay</option>
+          <option value="nay">Nay</option>
+          <option value="cry">Clooney Makes Me Cry</option>
+        </select>
+      </div>
+
+        <button class="btn btn-default btn-sm" type="submit">Do it</button>
+      </form>
+
+      <div ng-controller="WineCtrl">
+      <h2>Answers</h2>
+      <ul>
+        <li ng-repeat="item in answer1">
+          {{ item.result }}
+        </li>
+      </ul>
     </div>
+    <div ng-controller="ClooneyCtrl">
+    <ul>
+      <li ng-repeat="item in answer2">
+        {{ item.result }}
+      </li>
+    </ul>
+  </div>
+
+
+  </div>
   </body>
 </html>

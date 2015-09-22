@@ -15,5 +15,13 @@ surveybot.factory('SurveyFactory', function SurveyFactory() {
     factory.answer2.push(answerTwo);
   };
 
+  // factory.displayWine = function () {
+  //   return factory.answer1;
+  // };
+  //
+  // factory.displayClooney = function () {
+  //   return factory.answer2;
+  // };
+
     return factory;
 });
