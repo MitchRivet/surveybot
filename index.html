@@ -10,17 +10,17 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
   </head>
   <body>
-    <div class="container" ng-controller="WineCtrl">
-      <h1>Hey brother, what kind of wine do you prefer?</h1>
+    <div class="container">
+      <div ng-controller="WineCtrl">
+        <h1>Hey brother, what kind of wine do you prefer?</h1>
 
-      <form class="form-inline" role="form" ng-submit="SurveyFactory.addAnswerTwo(); SurveyFactory.addAnswerOne()">
-        <select ng-model="SurveyFactory.wineAnswer">
-          <option value="white">White</option>
-          <option value="red">Red</option>
-          <option value="cry">Wine Makes Me Cry</option>
-        </select>
+        <form class="form-inline" role="form" ng-submit="SurveyFactory.addAnswerTwo(); SurveyFactory.addAnswerOne()">
+          <select ng-model="SurveyFactory.wineAnswer">
+            <option value="white">White</option>
+            <option value="red">Red</option>
+            <option value="cry">Wine Makes Me Cry</option>
+          </select>
       </div>
-
 
       <div ng-controller="ClooneyCtrl">
         <h1>What ya think of Clooney?</h1>
@@ -35,22 +35,35 @@
       </form>
 
       <div ng-controller="WineCtrl">
-      <h2>Answers</h2>
-      <ul>
-        <li ng-repeat="item in answer1">
-          {{ item.result }}
-        </li>
-      </ul>
+        <div ng-repeat="item in filtered = (answer1 | filter:{ result: 'white'})">
+        </div>
+        <div ng-repeat="item in filtered2 = (answer1 | filter:{ result: 'red'})">
+        </div>
+        <div ng-repeat="item in filtered3 = (answer1 | filter:{ result: 'cry'})">
+        </div>
+
+        <div ng-show="answer1.length >= 5">
+          <h2>Answers</h2>
+          <p>White count: {{ filtered.length }}</p>
+          <p>Red count: {{ filtered2.length }}</p>
+          <p>Wine sad count: {{ filtered3.length }}</p>
+        </div>
+      </div>
+
+      <div ng-controller="ClooneyCtrl">
+        <div ng-repeat="item in filtered =(answer2 | filter:{ result: 'yay'})">
+        </div>
+        <div ng-repeat="item in filtered2 =(answer2 | filter:{ result: 'nay'})">
+        </div>
+        <div ng-repeat="item in filtered3 =(answer2 | filter:{ result: 'cry'})">
+        </div>
+
+        <div ng-show="answer2.length >= 5">
+          <p>Yay for Clooney: {{ filtered.length }}</p>
+          <p>Nay for Clooney: {{ filtered2.length }}</p>
+          <p>Clooney makes me cry: {{filtered3.length }}</p>
+        </div>
+      </div>
     </div>
-    <div ng-controller="ClooneyCtrl">
-    <ul>
-      <li ng-repeat="item in answer2">
-        {{ item.result }}
-      </li>
-    </ul>
-  </div>
-
-
-  </div>
   </body>
 </html>
